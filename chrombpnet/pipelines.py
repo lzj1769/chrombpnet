@@ -202,6 +202,8 @@ def chrombpnet_qc(args):
 
 	elif args.data_type == "DNASE":
 		bias_motifs = [["dnase_1","TTTACAAGTCCA"],["dnase_2","TTTACAAGTCCA"]]
+	elif args.data_type == "ACCESS":
+		bias_motifs = [["ddd1_1", "TCA"], ["ddd1_2", "TCC"], ["ddd1_3", "TCG"], ["ddd1_4", "TCT"]]
 	else:
 		print("unknown data type: "+args.data_type)
 	df = pd.DataFrame(bias_motifs)
