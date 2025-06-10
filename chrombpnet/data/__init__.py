@@ -6,6 +6,7 @@ class DefaultDataFile(Enum):
     dnase_ref_motifs = "DNASE.ref.motifs.txt"
     motif_to_pwm_atac = "motif_to_pwm.ATAC.tsv"
     motif_to_pwm_dnase = "motif_to_pwm.DNASE.tsv"
+    motif_to_pwm_access = "motif_to_pwm.ACCESS.tsv"
     motif_to_pwm_tf = "motif_to_pwm.TF.tsv"
     motifs_meme = "motifs.meme.txt"
     

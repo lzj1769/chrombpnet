@@ -184,7 +184,7 @@ def get_raw_signal_access(
     bam: pysam.Samfile = None,
 ) -> np.array:
     """
-    Get Ddda editing sites from specific genomic region
+    Get Ddd1 editing sites from specific genomic region
 
     Parameters
     ----------
@@ -252,6 +252,7 @@ def get_chrom_size(bam: pysam.Samfile) -> pr.PyRanges:
 def main(args):
     # generate bigwig for ACCESS
     if args.data_type == "ACCESS":
+        print("Generating BigWig file for ACCESS BAM file")
         bam = pysam.Samfile(args.input_bam_file, "rb")
         grs = get_chrom_size(bam=bam)
         wig_filename = f"{args.output_prefix}_unstranded.wig"

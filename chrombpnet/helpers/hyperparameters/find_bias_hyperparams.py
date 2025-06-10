@@ -78,7 +78,13 @@ def main(args):
     assert(len(nonpeak_cnts) == nonpeaks.shape[0])
 
     final_cnts = nonpeak_cnts
-    counts_threshold = np.quantile(peak_cnts,0.01)*args.bias_threshold_factor
+    
+    # _peak_cnts = peak_cnts[peak_cnts > 0]
+    # counts_threshold = np.min(_peak_cnts)*args.bias_threshold_factor
+    
+    counts_threshold = np.quantile(peak_cnts, 0.01)*args.bias_threshold_factor
+    
+    
     assert(counts_threshold > 0) # counts threshold is 0 - all non peaks will be filtered!
    
     final_cnts = final_cnts[final_cnts < counts_threshold]
