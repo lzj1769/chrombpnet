@@ -139,7 +139,7 @@ def main(args):
         if chrom=="chrom_train" or chrom=="chrom_valid":
             neg_to_pos_ratio = args.neg_to_pos_ratio_train
         else:
-            neg_to_pos_ratio = 1
+            neg_to_pos_ratio = args.neg_to_pos_ratio_train
 
         # for every gc value in positive how many negatives to find
         # we will keep the ratio of positives to negatives in the test set same

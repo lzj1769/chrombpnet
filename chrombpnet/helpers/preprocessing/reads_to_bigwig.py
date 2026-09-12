@@ -184,7 +184,7 @@ def get_raw_signal_access(
     bam: pysam.Samfile = None,
 ) -> np.array:
     """
-    Get Ddd1 editing sites from specific genomic region
+    Get DddSs editing sites from specific genomic region
 
     Parameters
     ----------

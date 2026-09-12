@@ -8,7 +8,7 @@ import argparse
 def read_args():
 	parser = argparse.ArgumentParser(description="Make summary reports")
 	parser.add_argument('-id', '--input-dir', required=True, type=str, help="directory name output by command chrombpnet bias pipeline")
-	parser.add_argument('-d', '--data-type', required=True, type=str, help="assay data type - ATAC or DNASE")
+	parser.add_argument('-d', '--data-type', required=True, type=str, help="assay data type - ATAC, DNASE or ACCESS")
 	parser.add_argument('-fp', '--file-prefix', required=False, default=None, type=str, help="File prefix for output to use. All the files will be prefixed with this string if provided.")
 	parser.add_argument('-icmd', '--command', required=False, default="pipeline", type=str, choices=['pipeline', 'train', "qc"], help="Choices on what to include in the report - entire pipleline, only train, only qc")
 	parser.add_argument('-hp', '--html_prefix', required=False, default="./", help="The html prefix to use for the html file output.")
@@ -260,6 +260,49 @@ def qc_report(fpx,prefix,data_type):
 			'''
 		html = html_perf+html_table+html_motifs
 		return html.format(dnase_1=dnase_1,dnase_2=dnase_2)
+
+	elif data_type == "ACCESS":
+		access_1 = os.path.join("./","{}chrombpnet_nobias.ddd1_1.footprint.png".format(fpx))
+		access_2 = os.path.join("./","{}chrombpnet_nobias.ddd1_2.footprint.png".format(fpx))
+		access_3 = os.path.join("./","{}chrombpnet_nobias.ddd1_3.footprint.png".format(fpx))
+		access_4 = os.path.join("./","{}chrombpnet_nobias.ddd1_4.footprint.png".format(fpx))
+
+		html_table = f'''
+					<body>	
+						<h3>{marg_hed}</h3>
+						<p>{marg_text}</p>
+						<p>{marg_text1}</p>	
+						<table>
+						 <thead>
+							<tr>		
+								<td>ACCESS motif 1</td>
+								<td>ACCESS motif 2</td>
+								<td>ACCESS motif 3</td>
+								<td>ACCESS motif 4</td>
+							</tr>
+						  </thead>
+						<tbody>	
+							<tr>		
+								<td><img src={{access_1}} class="cover" style="width: 100%; display: block;"></td>
+								<td><img src={{access_2}} class="cover" style="width: 100%; display: block;"></td>
+								<td><img src={{access_3}} class="cover" style="width: 100%; display: block;"></td>
+								<td><img src={{access_4}} class="cover" style="width: 100%; display: block;"></td>
+							</tr>
+						</tbody>
+						</table>
+					</body>	
+		'''
+		html_motifs = f'''			
+				<body style="font-size:20px;">
+					<h3>{tf_hed}</h3>
+					<p>{tf_text_profile}</p>
+				</body>
+				<body>
+					 {table_profile}
+				</body>
+			'''
+		html = html_perf+html_table+html_motifs
+		return html.format(access_1=access_1, access_2=access_2, access_3=access_3, access_4=access_4)	
 
 	else:
 		print("Unknown data type: "+data_type)

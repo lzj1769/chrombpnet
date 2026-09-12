@@ -16,7 +16,7 @@ def chrombpnet_train_pipeline(args):
 
     # Shift bam and convert to bigwig
     if args.input_bigwig_file:
-        print("A BigWif file is input, skip reads_to_bigwig function")
+        print("Input file is BigWig, skip reads_to_bigwig function")
         args.bigwig = args.input_bigwig_file
     else:
         import chrombpnet.helpers.preprocessing.reads_to_bigwig as reads_to_bigwig
@@ -129,8 +129,11 @@ def chrombpnet_train_pipeline(args):
     # marginal footprinting with model
     import chrombpnet.evaluation.marginal_footprints.marginal_footprinting as marginal_footprinting
     if args.data_type == "ATAC":
-        bias_motifs = [["tn5_1", "GCACAGTACAGAGCTG"], ["tn5_2", "GTGCACAGTTCTAGAGTGTGCAG"], [
-            "tn5_3", "CCTCTACACTGTGCAGAA"], ["tn5_4", "GCACAGTTCTAGACTGTGCAG"], ["tn5_5", "CTGCACAGTGTAGAGTTGTGC"]]
+        bias_motifs = [["tn5_1", "GCACAGTACAGAGCTG"], 
+                       ["tn5_2", "GTGCACAGTTCTAGAGTGTGCAG"], 
+                       ["tn5_3", "CCTCTACACTGTGCAGAA"], 
+                       ["tn5_4", "GCACAGTTCTAGACTGTGCAG"], 
+                       ["tn5_5", "CTGCACAGTGTAGAGTTGTGC"]]
 
     elif args.data_type == "DNASE":
         bias_motifs = [["dnase_1", "TTTACAAGTCCA"],
